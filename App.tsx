@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, View, StyleSheet, Pressable, Image } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import MaskedView from '@react-native-masked-view/masked-view';
 import PagerView from 'react-native-pager-view';
 
 // Screens
@@ -16,46 +16,56 @@ export default function App() {
 	};
   
 	return (
-		<SafeAreaProvider style={{ flex: 1 }}>
+		<View style={{ flex: 1, display: "flex" }}>
 			<PagerView style={{ flex: 1 }} initialPage={1} ref={pagerRef}>
 				<View><SavedLocationsScreen /></View>
 				<View><MapScreen /></View>
 				<View><SettingsScreen /></View>
 			</PagerView>
-  
+
 			<View style={styles.navBar}>
-				<Pressable onPress={() => goToPage(0)}>
+				<Pressable style={styles.navBarButtonSection} onPress={() => goToPage(0)}>
+					<Image style={styles.navBarButton} source={require("./assets/navbar/savedLocations.png")} />
+				</Pressable>
+				<Pressable style={styles.navBarButtonSection} onPress={() => goToPage(1)}>
 					<Image style={styles.navBarButton} source={require("./assets/navbar/map.png")} />
 				</Pressable>
-				<Pressable onPress={() => goToPage(1)}>
-					<Image style={styles.navBarButton} source={require("./assets/navbar/map.png")} />
-				</Pressable>
-				<Pressable onPress={() => goToPage(2)}>
+				<Pressable style={styles.navBarButtonSection} onPress={() => goToPage(2)}>
 					<Image style={styles.navBarButton} source={require("./assets/navbar/settings.png")} />
 				</Pressable>
 			</View>
-	  	</SafeAreaProvider>
+	  	</View>
 	);
 }
   
 const styles = StyleSheet.create({
 	navBar: {
-		borderTopStartRadius: 20,
-		borderTopEndRadius: 20,
-		backgroundColor: 'red',
-		width: '100%',
+		backgroundColor: "purple",
+		borderRadius: 20,
+		borderEndEndRadius: 50,
+		borderStartEndRadius: 50,
+		width: '95%',
 		height: 100,
+		bottom: 10,
+		padding: 10,
+		display: "flex",
 		flexDirection: "row",
 	  	justifyContent: "space-evenly",
-	  	padding: 10,
 		position: "relative",
-		display: "flex",
+		alignSelf: "center",
 		alignItems: "center"
 	},
 
+	navBarButtonSection: {
+		width: '33%',
+		height: '100%',
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+
 	navBarButton: {
-		top: -5,
 		aspectRatio: 1,
-		height: 50
+		height: 40
 	}
 });
