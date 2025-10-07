@@ -1,29 +1,38 @@
 import { StyleSheet } from 'react-native';
 
-export const Styles = StyleSheet.create({
-	navBarMask: {
-		backgroundColor: "purple",
-		width: '95%',
-		height: 100,
-		bottom: 10,
-		alignSelf: "center"
-	},
+export const Theme = {
+	themeColor: "#991d1d",
+	background: "#f9f9f9ff",
+	navBarBackground: "#ffffff",
+}
 
-	navBarMaskBackground: {
-		width: '100%',
-		height: '100%',
-		borderRadius: 20,
-		borderEndEndRadius: 50,
-		borderStartEndRadius: 50
+export const Styles = StyleSheet.create({
+	body: {
+		display: "flex",
+		flex: 1,
+		width: "100%",
+		height: "100%",
+		backgroundColor: Theme.background
 	},
 
 	navBar: {
+		backgroundColor: "white",
+		borderRadius: 12,
+		width: '85%',
+		height: 85,
 		padding: 10,
 		display: "flex",
 		flexDirection: "row",
 	  	justifyContent: "space-evenly",
 		position: "relative",
-		alignItems: "center"
+		alignItems: "center",
+		alignSelf: "center",
+		bottom: 16,
+		shadowColor: "#000000",
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity:  0.17,
+		shadowRadius: 2.54,
+		elevation: 3
 	},
 
 	navBarButtonSection: {
@@ -36,6 +45,19 @@ export const Styles = StyleSheet.create({
 
 	navBarButton: {
 		aspectRatio: 1,
-		height: 40
+		height: 30
+	},
+
+	navBarButtonActive: {
+		tintColor: Theme.themeColor
+	},
+
+	lineIndicator: {
+		position: "absolute",
+		bottom: 10,
+		backgroundColor: Theme.themeColor,
+		width: 40,
+		height: 5,
+		borderRadius: 20
 	}
 });
